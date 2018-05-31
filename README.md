@@ -10,7 +10,9 @@ Final Project for my Web Development Immersive at General Assembly. An applicati
 
 - Students will be able to add a link to an example performance of their music to study from.
 
-- They will be able to 
+- Students will be able to add practice logs to set goals for themselves and keep themselves accountable between lessons.
+
+- Students will be able to edit their contact information if it changes.
 
 ## WIREFRAMES
 
