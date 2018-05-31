@@ -4,7 +4,6 @@ import './style.css';
 const UserProfile = ({users, userId}) => {
 	const currentUser = users.filter(user => user.id === userId);
 	const shownUser = currentUser[0];
-	// MAKE IT SO INITALLY EMPTY ATTRIBUTES SAY N/A
 	const listUserAttributes = () => {
 		return (
 			<div>
