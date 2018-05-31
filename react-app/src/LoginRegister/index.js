@@ -15,12 +15,12 @@ class LoginRegister extends Component {
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
-		if (this.state.registering) this.props.doRegister(this.state.username, this.state.password)
-		else this.props.doLogin(this.state.username, this.state.password)
+		if (this.state.registering) this.props.doRegister(this.state.email, this.state.password)
+		else this.props.doLogin(this.state.email, this.state.password)
 	}
 	handleInput = (e) => {
 		const whichField = e.currentTarget.name
-		if (whichField === "username") this.setState({"username": e.currentTarget.value})
+		if (whichField === "email") this.setState({"email": e.currentTarget.value})
 		else this.setState({"password": e.currentTarget.value})
 	}
 	registration = (e) => {
