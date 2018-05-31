@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import LoginRegister from './LoginRegister';
 
 class App extends Component {
   constructor() {
@@ -13,16 +14,26 @@ class App extends Component {
       logInErrorMessage: ''
     }
   }
+  makeBlankMessage = () => {
+    this.setState({
+      message: ''
+    });
+  }
+  makeBlankLogOutMessage = () => {
+    this.setState({
+      logOutMessage: ''
+    });
+  }
   // GET METHODS
   getSongs = async () => {
-    const songsJson = await fetch('https://localhost:9292/music_students/songs', {
+    const songsJson = await fetch('http://localhost:9292/songs', {
       credentials: 'include'
     });
     const songs = await songsJson.json();
     return songs;
   }
   getPracticeLogs = async () => {
-    const practicelogsJson = await fetch('https://localhost:9292/music_students/practicelogs', {
+    const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
       credentials: 'include'
     });
     const practicelogs = await practicelogsJson.json();
@@ -32,7 +43,7 @@ class App extends Component {
   // LOG OUT
 
   doLogout = async () => {
-    const logoutJson = await fetch('https://localhost:9292/music_students/logout', {
+    const logoutJson = await fetch('http://localhost:9292/users/logout', {
       credentials: 'include' // you MUST include in ALL ajax requests
     })
     const loggedOut = await logoutJson.json();
@@ -47,7 +58,7 @@ class App extends Component {
   // LOG IN
 
   doLogin = async (email, password) => {
-    const loginJson = await fetch('https://localhost:9292/music_students/login', {
+    const loginJson = await fetch('http://localhost:9292/users/login', {
       method: 'POST',
       credentials: 'include', // you MUST include in ALL ajax requests
       body: JSON.stringify({
@@ -89,7 +100,7 @@ class App extends Component {
   // REGISTER
 
   doRegister = async (email, password) => {
-    const registerJson = await fetch('https://localhost:9292/music_students/register', {
+    const registerJson = await fetch('http://localhost:9292/users/register', {
       method: 'POST',
       credentials: 'include', // you MUST include in ALL ajax requests
       body: JSON.stringify({
@@ -133,8 +144,10 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loggedIn ?
-            <h1>You're logged in.</h1>
-          : <h1>Please log in to the site.</h1>
+            <div>
+              <h1>You're logged in.</h1>
+            </div>
+          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankLogOutMessage={this.makeBlankLogOutMessage} />
         }
       </div>
     );
