@@ -15,7 +15,7 @@ Final Project for my Web Development Immersive at General Assembly. An applicati
 ## WIREFRAMES
 
 ### LOGIN/REGISTER 
-![Login/Register Page](wireframes/login_page.png)
+![Login/Register Page](wireframes/login_register.png)
 
 ### LANDING PAGE
 ![Landing Page](wireframes/landing_page.png)
