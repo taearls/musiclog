@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
 import LoginRegister from './LoginRegister';
+import UserContainer from './UserContainer';
+import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      users: [],
+      userId: '',
       songs: [],
       practicelogs: [],
       loggedIn: false,
@@ -13,6 +16,35 @@ class App extends Component {
       logOutMessage: '',
       logInErrorMessage: ''
     }
+  }
+  componentDidMount() {
+    this.getUsers()
+      .then((response) => {
+        this.setState({
+          users: response.users
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      this.getSongs()
+      .then((response) => {
+        this.setState({
+          songs: response.songs
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      this.getPracticelogs()
+      .then((response) => {
+        this.setState({
+          practicelogs: response.practicelogs
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
   makeBlankMessage = () => {
     this.setState({
@@ -25,6 +57,13 @@ class App extends Component {
     });
   }
   // GET METHODS
+  getUsers = async () => {
+    const usersJson = await fetch('http://localhost:9292/users', {
+      credentials: 'include'
+    });
+    const users = await usersJson.json();
+    return users;
+  }
   getSongs = async () => {
     const songsJson = await fetch('http://localhost:9292/songs', {
       credentials: 'include'
@@ -32,7 +71,7 @@ class App extends Component {
     const songs = await songsJson.json();
     return songs;
   }
-  getPracticeLogs = async () => {
+  getPracticelogs = async () => {
     const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
       credentials: 'include'
     });
@@ -71,25 +110,8 @@ class App extends Component {
       this.setState({
         loggedIn: true,
         logInErrorMessage: '',
-        message: `Welcome back, ${email}!`
-      })
-      this.getSongs()
-      .then((response) => {
-        this.setState({
-          songs: response.songs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      this.getPracticeLogs()
-      .then((response) => {
-        this.setState({
-          practicelogs: response.practicelogs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
+        message: `Welcome back, ${email}!`,
+        userId: loggedIn.user_id
       })
     } else {
       this.setState({
@@ -110,29 +132,11 @@ class App extends Component {
     })
     const parsedRegisterResponse = await registerJson.json();
     if (parsedRegisterResponse.success) {
-
       this.setState({
         loggedIn: true,
         logInErrorMessage: '',
-        message: `Welcome, ${email}!`
-      })
-      this.getSongs()
-      .then((response) => {
-        this.setState({
-          songs: response.songs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      this.getPracticeLogs()
-      .then((response) => {
-        this.setState({
-          practicelogs: response.practicelogs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
+        message: `Welcome, ${email}!`,
+        userId: parsedRegisterResponse.user_id
       })
     } else {
       this.setState({
@@ -144,9 +148,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loggedIn ?
-            <div>
-              <h1>You're logged in.</h1>
-            </div>
+            <UserContainer users={this.state.users} userId={this.state.userId}/>
           : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankLogOutMessage={this.makeBlankLogOutMessage} />
         }
       </div>
