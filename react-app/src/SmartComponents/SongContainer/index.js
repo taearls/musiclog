@@ -8,15 +8,18 @@ class SongContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
-
+			showEditSong: false
 		}
 	}
 	render() {
-		return (
+		return(
 			<div>
-				<h1> This is SongContainer.</h1>
+				{ this.state.showEditSong ?
+					<EditSongModal />
+				:	<SongView />
+				}	
 			</div>
-		)
+		);
 	}
 }
 
