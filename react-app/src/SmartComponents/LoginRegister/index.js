@@ -16,7 +16,7 @@ class LoginRegister extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		if (this.state.registering) this.props.doRegister(this.state.email, this.state.password)
-		else this.props.doLogin(this.state.email, this.state.password)
+		else this.props.doLogIn(this.state.email, this.state.password)
 	}
 	handleInput = (e) => {
 		const whichField = e.currentTarget.name

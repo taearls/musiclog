@@ -22,10 +22,10 @@ class UserContainer extends Component {
 					<div>
 						{ this.state.showEditUser ?
 							<EditUserModal />
-						:	<UserProfile users={this.props.users} userId={this.props.userId} />	
+						:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut}/>	
 						}
 					</div>
-				: <SongContainer />
+				: <SongContainer doLogOut={this.props.doLogOut}/>
 				}
 			</div>
 		);

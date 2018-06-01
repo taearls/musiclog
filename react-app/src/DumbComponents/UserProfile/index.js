@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../index.css';
 
-const UserProfile = ({users, userId}) => {
+const UserProfile = ({users, userId, doLogOut}) => {
 	const currentUser = users.filter(user => user.id === userId);
 	const shownUser = currentUser[0];
 	const listUserAttributes = () => {
@@ -39,7 +39,7 @@ const UserProfile = ({users, userId}) => {
 
 			<button className="deletebutton">Delete</button> <br/>
 
-			<button className="logout">Log Out</button>
+			<button className ="logout" onClick={doLogOut}>Log Out</button>
 		</div>
 	);
 }

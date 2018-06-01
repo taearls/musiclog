@@ -95,7 +95,7 @@ class App extends Component {
 
   // LOG OUT
 
-  doLogout = async () => {
+  doLogOut = async () => {
     const logoutJson = await fetch('http://localhost:9292/users/logout', {
       credentials: 'include' // you MUST include in ALL ajax requests
     })
@@ -112,7 +112,7 @@ class App extends Component {
 
   // LOG IN
 
-  doLogin = async (email, password) => {
+  doLogIn = async (email, password) => {
     const loginJson = await fetch('http://localhost:9292/users/login', {
       method: 'POST',
       credentials: 'include', // you MUST include in ALL ajax requests
@@ -169,8 +169,8 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loggedIn ?
-            <UserContainer users={this.state.users} userId={this.state.userId} message={this.state.message}/>
-          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} justLoggedOut={this.state.justLoggedOut} />
+            <UserContainer users={this.state.users} userId={this.state.userId} message={this.state.message} doLogOut={this.doLogOut}/>
+          : <LoginRegister doLogIn={this.doLogIn} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} justLoggedOut={this.state.justLoggedOut} />
         }
       </div>
     );
