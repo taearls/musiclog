@@ -21,39 +21,64 @@ h1 {
 h3 {
 	font-size: 24px;
 }
+
+/* MESSAGES TO CLIENT */
+.hidden {
+	visibility: hidden;
+}
+.message {
+	
+}
 .error {
 	color: #BF2845;
+	font-size: 24px;
+	margin-top: 0;
+	margin-bottom: 0;
+
+}
+.loginregister :hover {
+	color: #B4D6C6;
+	cursor: pointer;
 }
 
 /* BUTTONS */
 
-button {
+/* ALL BUTTON SETTINGS */
+.editbutton, .viewbutton, .createbutton, .deletebutton, .logout {
+	border-radius: 5%;
+	color: black;
+	width: 100px;
+	height: 30px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 18px;
+}
+.editbutton, .viewbutton, .createbutton, .deletebutton, .logout, .loginbutton :hover {
+	cursor: pointer;
+} 
+/* SPECIFIC BUTTON SETTINGS */
+.editbutton { 
+	background-color: #F1F57A;
+ }
+.viewbutton {
+	background-color: #4A849F;
+}
+.createbutton {
+	background-color: lightgreen;
+}
+.deletebutton {
+	background-color: firebrick;
+}
+.logout {
+	background-color: #F2845C;
+}
+.loginbutton {
 	border-radius: 5%;
     height: 20px;
 	width: 60px;
 	color: #F5F1D5;
 	background-color: #4A849F;
 }
-button:hover {
+.loginbutton :hover {
 	cursor: pointer;
-} 
-.loginregister :hover {
-	color: #B4D6C6;
-	cursor: pointer;
-}
-
-.editbutton {
-	background-color: #F1F57A;
-	color: black;
-	width: 100px;
-	height: 30px;
-}
-.createbutton {
-
-}
-.deletebutton {
-
-}
-.logout {
-
 }

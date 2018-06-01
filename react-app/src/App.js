@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LoginRegister from './LoginRegister';
-import UserContainer from './UserContainer';
+import LoginRegister from './SmartComponents/LoginRegister';
+import UserContainer from './SmartComponents/UserContainer';
 import './index.css';
 
 class App extends Component {
@@ -12,6 +12,7 @@ class App extends Component {
       songs: [],
       practicelogs: [],
       loggedIn: false,
+      justLoggedOut: false,
       message: '',
       logOutMessage: '',
       logInErrorMessage: ''
@@ -102,6 +103,7 @@ class App extends Component {
     if (loggedOut.success) {
       this.setState({
         loggedIn: false,
+        justLoggedOut: true,
         logOutMessage: loggedOut.message
       });
     }
@@ -123,6 +125,7 @@ class App extends Component {
     if (loggedIn.success) {
       this.setState({
         loggedIn: true,
+        justLoggedOut: false,
         logInErrorMessage: '',
         message: `Welcome back, ${email}!`,
         userId: loggedIn.user_id
@@ -149,23 +152,25 @@ class App extends Component {
     if (parsedRegisterResponse.success) {
       this.setState({
         loggedIn: true,
+        justLoggedOut: false,
         logInErrorMessage: '',
         message: `Welcome, ${email}!`,
         userId: parsedRegisterResponse.user_id
       })
+      this.getUsers()
     } else {
       this.setState({
         logInErrorMessage: parsedRegisterResponse.message
       });
     }
   }
-  
+
   render() {
     return (
       <div className="App">
         {this.state.loggedIn ?
             <UserContainer users={this.state.users} userId={this.state.userId} message={this.state.message}/>
-          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} />
+          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} justLoggedOut={this.state.justLoggedOut} />
         }
       </div>
     );

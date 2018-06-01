@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import '../../index.css';
 
-class EditUserModal extends Component {
+class EditPracticeLogModal extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,10 +11,10 @@ class EditUserModal extends Component {
   render(){
     return (
       <div>
-        <h1> Modal goes here. </h1>
+        <h1> Edit Practice Log Modal goes here. </h1>
       </div>
     );
   }
 }
 
-export default EditUserModal;
+export default EditPracticeLogModal;
