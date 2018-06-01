@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginRegister from './LoginRegister';
 import UserContainer from './UserContainer';
-import './App.css';
+import './index.css';
 
 class App extends Component {
   constructor() {
@@ -17,6 +17,27 @@ class App extends Component {
       logInErrorMessage: ''
     }
   }
+
+  // MESSAGE TIMEOUTS
+
+  makeBlankMessage = () => {
+    this.setState({
+      message: ''
+    });
+  }
+  clearError = () => {
+    this.setState({
+      logInErrorMessage: ''
+    });
+  }
+  clearLogOutMessage = () => {
+    this.setState({
+      logOutMessage: ''
+    });
+  }
+
+  // CALL GET REQUESTS
+
   componentDidMount() {
     this.getUsers()
       .then((response) => {
@@ -45,18 +66,10 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       })
-  }
-  makeBlankMessage = () => {
-    this.setState({
-      message: ''
-    });
-  }
-  makeBlankLogOutMessage = () => {
-    this.setState({
-      logOutMessage: ''
-    });
-  }
-  // GET METHODS
+  } 
+
+  // DEFINE GET REQUESTS
+
   getUsers = async () => {
     const usersJson = await fetch('http://localhost:9292/users', {
       credentials: 'include'
@@ -94,6 +107,7 @@ class App extends Component {
     }
     return loggedOut;
   }
+
   // LOG IN
 
   doLogin = async (email, password) => {
@@ -119,6 +133,7 @@ class App extends Component {
       });
     }
   }
+
   // REGISTER
 
   doRegister = async (email, password) => {
@@ -144,12 +159,13 @@ class App extends Component {
       });
     }
   }
+  
   render() {
     return (
       <div className="App">
         {this.state.loggedIn ?
-            <UserContainer users={this.state.users} userId={this.state.userId}/>
-          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankLogOutMessage={this.makeBlankLogOutMessage} />
+            <UserContainer users={this.state.users} userId={this.state.userId} message={this.state.message}/>
+          : <LoginRegister doLogin={this.doLogin} doRegister={this.doRegister} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} />
         }
       </div>
     );

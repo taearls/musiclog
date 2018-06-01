@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserProfile from '../UserProfile';
 import EditUserModal from '../EditUserModal';
-import './style.css';
+import '../index.css';
 
 class UserContainer extends Component {
 	constructor() {
@@ -14,8 +14,10 @@ class UserContainer extends Component {
 	render() {
 		return(
 			<div>
-				<UserProfile users={this.props.users} userId={this.props.userId}/>
-				<EditUserModal />
+				{ this.state.showEditUser ?
+					<EditUserModal />
+				:	<UserProfile users={this.props.users} userId={this.props.userId} />	
+				}
 			</div>
 		);
 	}

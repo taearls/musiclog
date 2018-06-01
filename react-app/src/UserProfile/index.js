@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import '../index.css';
 
 const UserProfile = ({users, userId}) => {
 	const currentUser = users.filter(user => user.id === userId);
@@ -23,9 +23,19 @@ const UserProfile = ({users, userId}) => {
 		)
 	}
 	return (
-		<ul>
-			{listUserAttributes()}
-		</ul>
+		// change header + button text depending on 
+		// whether the user's name is defined or not
+		<div>
+			<h1>User Profile</h1>
+			<ul>
+				{listUserAttributes()}
+			</ul>
+			<button class="deletebutton">Delete User</button>
+			<button class="editbutton">Edit User Information</button>
+			<button class="createbutton">Add New Song</button>
+			<button class="createbutton">Add New Practice Log</button>
+			<button class="logout">Log Out</button>
+		</div>
 	);
 }
 

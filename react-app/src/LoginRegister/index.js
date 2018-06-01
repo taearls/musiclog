@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './style.css';
 
 class LoginRegister extends Component {
 	constructor() {
@@ -11,7 +10,8 @@ class LoginRegister extends Component {
 		}
 	}
 	componentDidMount() {
-		{this.setMessageTimeout()}
+		{this.setLogOutTimeout()}
+		{this.setErrorTimeOut()}
 	}
 	handleSubmit = (e) => {
 		e.preventDefault();
@@ -29,17 +29,22 @@ class LoginRegister extends Component {
 	loggingIn = (e) => {
 		this.setState({registering: false});
 	}
-	setMessageTimeout = () => {
-		setTimeout(this.props.makeBlankLogOutMessage, 1000);
+	setLogOutTimeout = () => {
+		setTimeout(this.props.clearLogOutMessage, 1000);
+	}
+	setErrorTimeOut = () => {
+		setTimeout(this.props.makeBlankMessage, 1000);
 	}
 	render() {
 		return (
 			<div>
   				<h1>Welcome to the site!</h1>
-					<h4> {this.props.logOutMessage} </h4>
-					{this.props.logInErrorMessage.toString() !== '' ? <p className="login-error">{this.props.logInErrorMessage.toString()}</p> : null}
+					<h3> {this.props.logOutMessage} </h3>
+					{ this.props.logInErrorMessage.toString() !== '' ? 
+						<p class="error">{this.props.logInErrorMessage.toString()}</p> 
+					: null }
 
-					<p><span className={this.state.registering ? "current" : null}onClick={this.registration}>Register</span> • <span className={!this.state.registering ? "current" : null} onClick={this.loggingIn}>Log In</span></p>
+					<h3 class="loginregister"><span className={this.state.registering ? "current" : null}onClick={this.registration}>Register</span> • <span className={!this.state.registering ? "current" : null} onClick={this.loggingIn}>Log In</span></h3>
 					<form onSubmit={this.handleSubmit}>
 						<input type="text" name="email" placeholder="Email" onChange={this.handleInput}></input>
 						<br/>
