@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SongContainer from '../../SmartComponents/SongContainer';
+import PracticeLogContainer from '../../SmartComponents/PracticeLogContainer';
 import EditUserModal from '../../SmartComponents/EditUserModal';
 import UserProfile from '../../DumbComponents/UserProfile';
 import '../../index.css';
@@ -52,17 +53,34 @@ class UserContainer extends Component {
 			viewSongs: false
 		})
 	}
+	showPracticeLogView = (e) => {
+		e.preventDefault();
+		this.setState({
+			viewPracticeLogs: true
+		})
+	}
+	hidePracticeLogView = (e) => {
+		e.preventDefault();
+		this.setState({
+			viewPracticeLogs: true
+		})
+	}
 	render() {
 		return(
 			<div>
-				{ !this.state.viewSongs ? 
+				{ !this.state.viewPracticeLogs ?
 					<div>
-						{ this.state.showEditUser ?
-							<EditUserModal />
-						:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView}/>	
-						}
+				    { !this.state.viewSongs ? 
+						<div>
+							{ this.state.showEditUser ?
+								<EditUserModal />
+							:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} />	
+							}
+						</div>
+					: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+					}
 					</div>
-				: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut}/>
+				:   <PracticeLogContainer practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
 				}
 			</div>
 		);

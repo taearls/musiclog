@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserContainer from '../UserContainer';
 import EditSongModal from '../../SmartComponents/EditSongModal';
 import SongView from '../../DumbComponents/SongView';
+import PracticeLogView from '../../DumbComponents/PracticeLogView';
 import '../../index.css';
 
 class SongContainer extends Component {
@@ -16,7 +17,7 @@ class SongContainer extends Component {
 			<div>
 				{ this.state.showEditSong ?
 					<EditSongModal />
-				:	<SongView songs={this.props.songs} />
+				:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
 				}	
 			</div>
 		);

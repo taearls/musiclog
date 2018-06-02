@@ -8,13 +8,16 @@ class PracticeLogContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
-
+			showEditPracticeLog: false
 		}
 	}
 	render() {
 		return (
 			<div>
-				<h1> This is PracticeLogContainer.</h1>
+				{ this.state.showEditPracticeLog ? 
+					<EditPracticeLogModal />
+				:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+				}
 			</div>
 		)
 	}
