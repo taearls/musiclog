@@ -10,8 +10,8 @@ const SongView = ({songs, userId, doLogOut}) => {
 				<li><b>Song Name:</b> {song.song_name}</li>
 				<li><b>Artist Name:</b> {song.artist_name}</li>
 				<li><b>Notes About Song: </b> {song.notes}</li>
-				<li><b>Link to Song File:</b> {song.link_to_file}</li>
-				<li><b>Link to Song Performance:</b> {song.link_to_performance}</li>
+				<li><b>Link to Song File:</b> <a href={song.link_to_file} target="_blank">Link to Song</a></li>
+				<li><b>Link to Song Performance:</b> <a href={song.link_to_performance} target="_blank">Link to Performance</a></li>
 			</ul>
 		);
 	});
