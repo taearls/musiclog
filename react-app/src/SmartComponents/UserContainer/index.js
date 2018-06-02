@@ -40,6 +40,18 @@ class UserContainer extends Component {
 	      	users: this.state.users.filter((user) => user.id != id)
 	    });
 	}
+	showSongView = (e) => {
+		e.preventDefault();
+		this.setState({
+			viewSongs: true
+		})
+	}
+	hideSongView = (e) => {
+		e.preventDefault();
+		this.setState({
+			viewSongs: false
+		})
+	}
 	render() {
 		return(
 			<div>
@@ -47,10 +59,10 @@ class UserContainer extends Component {
 					<div>
 						{ this.state.showEditUser ?
 							<EditUserModal />
-						:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser}/>	
+						:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView}/>	
 						}
 					</div>
-				: <SongContainer doLogOut={this.props.doLogOut}/>
+				: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut}/>
 				}
 			</div>
 		);
