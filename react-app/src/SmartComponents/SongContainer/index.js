@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserContainer from '../UserContainer';
+// import UserContainer from '../UserContainer';
 import CreateSongModal from '../../SmartComponents/CreateSongModal';
 import EditSongModal from '../../SmartComponents/EditSongModal';
 import SongView from '../../DumbComponents/SongView';
@@ -24,7 +24,7 @@ class SongContainer extends Component {
 	    const response = await song.json();
 
 	    const editedSongIndex = this.props.songs.findIndex((song) => {
-	    	return song.id == response.updated_song.id;
+	    	return Number(song.id) === Number(response.updated_song.id);
 	    });
 	    this.props.songs[editedSongIndex] = response.updated_song;
 	    this.setState({
@@ -38,7 +38,7 @@ class SongContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	songs: this.props.songs.filter((song) => song.id != id)
+	      	songs: this.props.songs.filter((song) => Number(song.id) !== Number(id))
 	    });
 	}
 	render() {

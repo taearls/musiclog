@@ -3,8 +3,8 @@ import '../../index.css';
 
 const SongView = ({songs, userId, doLogOut, hideSongView, showPracticeLogView, deleteSong, editSong}) => {
 	// filter out the songs for the current user
-	const userSongs = songs.filter(song => song.user_id == userId);
-	const songList = songs.map((song, i) => {
+	const userSongs = songs.filter(song => Number(song.user_id) === Number(userId));
+	const songList = userSongs.map((song, i) => {
 		return (
 			<div key={i} id={song.id}>
 				<p><b>Song Name:</b> {song.song_name}</p>

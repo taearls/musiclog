@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserContainer from '../UserContainer';
+// import UserContainer from '../UserContainer';
 import CreatePracticeLogModal from '../../SmartComponents/CreatePracticeLogModal';
 import EditPracticeLogModal from '../../SmartComponents/EditPracticeLogModal';
 import PracticeLogView from '../../DumbComponents/PracticeLogView';
@@ -23,7 +23,7 @@ class PracticeLogContainer extends Component {
 	    const response = await practicelog.json();
 
 	    const editedPracticeLogIndex = this.props.practicelogs.findIndex((practicelog) => {
-	    	return practicelog.id == response.updated_practicelog.id;
+	    	return Number(practicelog.id) === Number(response.updated_practicelog.id);
 	    });
 	    this.props.practicelogs[editedPracticeLogIndex] = response.updated_practicelog;
 	    this.setState({
@@ -37,7 +37,7 @@ class PracticeLogContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	practicelogs: this.props.practicelogs.filter((practicelog) => practicelog.id != id)
+	      	practicelogs: this.props.practicelogs.filter((practicelog) => Number(practicelog.id) !== Number(id))
 	    });
 	}
 	render() {
@@ -47,7 +47,7 @@ class PracticeLogContainer extends Component {
 					<div>
 						{ this.state.showEditPracticeLog ? 
 							<EditPracticeLogModal />
-						:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showPracticeLogView={this.props.showPracticeLogView} deletePracticeLog={this.deletePracticeLog} editPracticeLog={this.editPracticeLog} />
+						:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} deletePracticeLog={this.deletePracticeLog} editPracticeLog={this.editPracticeLog} />
 						}
 					</div>
 				:   <CreatePracticeLogModal />

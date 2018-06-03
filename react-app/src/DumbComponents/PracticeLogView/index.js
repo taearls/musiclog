@@ -3,8 +3,8 @@ import '../../index.css';
 
 const PracticeLogView = ({practicelogs, userId, doLogOut, hidePracticeLogView, showSongView, deletePracticeLog, editPracticeLog}) => {
 	// filter out the practicelogs for the current user
-	const userPracticelogs = practicelogs.filter(practicelog => practicelog.user_id == userId);
-	const practicelogList = practicelogs.map((practicelog, i) => {
+	const userPracticelogs = practicelogs.filter(practicelog => Number(practicelog.user_id) === Number(userId));
+	const practicelogList = userPracticelogs.map((practicelog, i) => {
 		return (
 			<div key={i} id={practicelog.id}>
 				<p><b>Songs Worked On:</b> {practicelog.song_name}</p>

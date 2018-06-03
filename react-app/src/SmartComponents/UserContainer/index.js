@@ -24,7 +24,7 @@ class UserContainer extends Component {
 	    const response = await user.json();
 
 	    const editedUserIndex = this.state.users.findIndex((user) => {
-	    	return user.id == response.updated_users.id;
+	    	return Number(user.id) === Number(response.updated_users.id);
 	    });
 	    this.state.employees[editedUserIndex] = response.updated_user;
 	    this.setState({
@@ -39,7 +39,7 @@ class UserContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	users: this.state.users.filter((user) => user.id != id)
+	      	users: this.state.users.filter((user) => Number(user.id) !== Number(id))
 	    });
 	}
 	showSongView = (e) => {
