@@ -74,11 +74,11 @@ class PracticeLogContainer extends Component {
 				{ !this.state.showCreatePracticeLog ?
 					<div>
 						{ this.state.showEditPracticeLog ? 
-							<EditPracticeLogModal />
+							<EditPracticeLogModal editPracticeLog={this.editPracticeLog} hideEditPracticeLogModal={this.hideEditPracticeLogModal} doLogOut={this.props.doLogOut} />
 						:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} deletePracticeLog={this.deletePracticeLog} showCreatePracticeLogModal={this.showCreatePracticeLogModal} showEditPracticeLogModal={this.showEditPracticeLogModal} />
 						}
 					</div>
-				:   <CreatePracticeLogModal hideCreatePracticeLogModal={this.hideCreatePracticeLogModal} hidePracticeLogView={this.props.hidePracticeLogView} doLogOut={this.doLogOut} />
+				:   <CreatePracticeLogModal hideCreatePracticeLogModal={this.hideCreatePracticeLogModal} hidePracticeLogView={this.props.hidePracticeLogView} doLogOut={this.props.doLogOut} />
 				}
 			</div>
 		)
