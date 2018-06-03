@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContainer from '../UserContainer';
+import CreateSongModal from '../../SmartComponents/CreateSongModal';
 import EditSongModal from '../../SmartComponents/EditSongModal';
 import SongView from '../../DumbComponents/SongView';
 import PracticeLogView from '../../DumbComponents/PracticeLogView';
@@ -9,7 +10,8 @@ class SongContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			showEditSong: false
+			showEditSong: false,
+			showCreateSong: false
 		}
 	}
 	editSong = async (editedSong, e) => {
@@ -42,10 +44,15 @@ class SongContainer extends Component {
 	render() {
 		return(
 			<div>
-				{ this.state.showEditSong ?
-					<EditSongModal />
-				:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} editSong={this.editSong} />
-				}	
+				{ !this.state.showCreateSong ?
+					<div>
+						{ this.state.showEditSong ?
+							<EditSongModal />
+						:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} editSong={this.editSong} />
+						}	
+					</div>
+				:   <CreateSongModal />
+				}
 			</div>
 		);
 	}

@@ -19,10 +19,10 @@ const SongView = ({songs, userId, doLogOut, hideSongView, showPracticeLogView, d
 	});
 	return (
 		<div>
-			<h1> Songs View </h1>
+			<h1> Your Songs </h1>
 			{songList}
 			<button className="createbutton">Add Song</button> <br/>
-			
+
 			<button className="viewbutton" onClick={hideSongView}>Home</button>
 			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button> <br/>
 

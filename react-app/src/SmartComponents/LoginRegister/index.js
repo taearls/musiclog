@@ -52,9 +52,9 @@ class LoginRegister extends Component {
 					<span className={!this.state.registering ? "current" : null} onClick={this.loggingIn}> Log In </span>
 				</h3>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" name="email" placeholder="Email" onChange={this.handleInput}></input>
+					<input class="input" type="text" name="email" placeholder="Email" onChange={this.handleInput}></input>
 					<br/>
-      				<input type="password" name="password" placeholder="Password" onChange={this.handleInput}></input>
+      				<input class="input" type="password" name="password" placeholder="Password" onChange={this.handleInput}></input>
       				<br/>
       				<button className="viewbutton" type="submit"> {this.state.registering ? "Register" : "Log In"}</button>
      			</form>

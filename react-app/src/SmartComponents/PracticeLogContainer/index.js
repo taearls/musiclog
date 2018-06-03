@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContainer from '../UserContainer';
+import CreatePracticeLogModal from '../../SmartComponents/CreatePracticeLogModal';
 import EditPracticeLogModal from '../../SmartComponents/EditPracticeLogModal';
 import PracticeLogView from '../../DumbComponents/PracticeLogView';
 import '../../index.css';
@@ -8,7 +9,8 @@ class PracticeLogContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			showEditPracticeLog: false
+			showEditPracticeLog: false,
+			showCreatePracticeLog: false
 		}
 	}
 	editPracticeLog = async (editedPracticeLog, e) => {
@@ -41,9 +43,14 @@ class PracticeLogContainer extends Component {
 	render() {
 		return (
 			<div>
-				{ this.state.showEditPracticeLog ? 
-					<EditPracticeLogModal />
-				:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showPracticeLogView={this.props.showPracticeLogView} deletePracticeLog={this.deletePracticeLog} editPracticeLog={this.editPracticeLog} />
+				{ !this.state.showCreatePracticeLog ?
+					<div>
+						{ this.state.showEditPracticeLog ? 
+							<EditPracticeLogModal />
+						:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showPracticeLogView={this.props.showPracticeLogView} deletePracticeLog={this.deletePracticeLog} editPracticeLog={this.editPracticeLog} />
+						}
+					</div>
+				:   <CreatePracticeLogModal />
 				}
 			</div>
 		)

@@ -21,6 +21,14 @@ h1 {
 h3 {
 	font-size: 24px;
 }
+p {
+	font-size: 20px;
+}
+.input {
+	height: 25px;
+	width: 180px;
+	font-size: 18px;
+}
 
 /* MESSAGES TO CLIENT */
 .hidden {
