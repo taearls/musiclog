@@ -10,9 +10,15 @@ class SongContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
+			songs: [],
 			showEditSong: false,
 			showCreateSong: false
 		}
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			songs: nextProps.songs
+		})
 	}
 	showCreateSongModal = (e) => {
 		e.preventDefault();
@@ -42,6 +48,18 @@ class SongContainer extends Component {
 			showCreateSong: false
 		})
 	}
+	addSong = async (song, e) => {
+	    e.preventDefault();
+	    const songsJson = await fetch ('http://localhost:9292/songs', {
+	      credentials: 'include',
+	      method: 'POST',
+	      body: JSON.stringify(song)
+	    })
+	    const songsParsed = await songsJson.json();
+	    this.setState({
+	      songs: [...this.state.songs, songsParsed.new_song]
+	    })
+	}
 	editSong = async (editedSong, e) => {
 	    const id = e.currentTarget.parentNode.id;
 	    const song = await fetch('http://localhost:9292/songs/' + id, {
@@ -66,7 +84,7 @@ class SongContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	songs: this.props.songs.filter((song) => Number(song.id) !== Number(id))
+	      	songs: this.state.songs.filter((song) => Number(song.id) !== Number(id))
 	    });
 	}
 	render() {

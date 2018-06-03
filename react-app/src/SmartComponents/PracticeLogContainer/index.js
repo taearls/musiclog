@@ -9,9 +9,15 @@ class PracticeLogContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
+			practicelogs: [],
 			showEditPracticeLog: false,
 			showCreatePracticeLog: false
 		}
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			practicelogs: nextProps.practicelogs
+		})
 	}
 	showCreatePracticeLogModal = (e) => {
 		e.preventDefault();
