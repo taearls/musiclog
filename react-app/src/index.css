@@ -29,6 +29,9 @@ p {
 	width: 180px;
 	font-size: 18px;
 }
+.linkdisplay {
+	color: #4A849F;
+}
 
 /* MESSAGES TO CLIENT */
 .hidden {

@@ -10,8 +10,8 @@ const SongView = ({songs, userId, doLogOut, hideSongView, showPracticeLogView, d
 				<p><b>Song Name:</b> {song.song_name}</p>
 				<p><b>Artist Name:</b> {song.artist_name}</p>
 				<p><b>Notes About Song: </b> {song.notes}</p>
-				<p><b>Link to Song File:</b> <a href={song.link_to_file} target="_blank">Link to Song</a></p>
-				<p><b>Link to Song Performance:</b> <a href={song.link_to_performance} target="_blank">Link to Performance</a></p>
+				<p><b>Link to Song File:</b> <a className="linkdisplay" href={song.link_to_file} target="_blank">Song Link</a></p>
+				<p><b>Link to Song Performance:</b> <a className="linkdisplay" href={song.link_to_performance} target="_blank">Performance Link</a></p>
 				<button className="deletebutton" onClick={deleteSong}>Delete</button>
 				<button className="editbutton" onClick={editSong}>Edit</button>
 			</div>
