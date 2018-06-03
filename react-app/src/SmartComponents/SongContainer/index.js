@@ -17,7 +17,7 @@ class SongContainer extends Component {
 			<div>
 				{ this.state.showEditSong ?
 					<EditSongModal />
-				:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+				:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView}/>
 				}	
 			</div>
 		);

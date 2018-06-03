@@ -44,25 +44,29 @@ class UserContainer extends Component {
 	showSongView = (e) => {
 		e.preventDefault();
 		this.setState({
-			viewSongs: true
+			viewSongs: true,
+			viewPracticeLogs: false
 		})
 	}
 	hideSongView = (e) => {
 		e.preventDefault();
 		this.setState({
-			viewSongs: false
+			viewSongs: false,
+			viewPracticeLogs: false
 		})
 	}
 	showPracticeLogView = (e) => {
 		e.preventDefault();
 		this.setState({
-			viewPracticeLogs: true
+			viewPracticeLogs: true,
+			viewSongs: false
 		})
 	}
 	hidePracticeLogView = (e) => {
 		e.preventDefault();
 		this.setState({
-			viewPracticeLogs: true
+			viewPracticeLogs: false,
+			viewSongs: false
 		})
 	}
 	render() {
@@ -77,10 +81,10 @@ class UserContainer extends Component {
 							:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} />	
 							}
 						</div>
-					: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+					: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.hideSongView} showPracticeLogView={this.showPracticeLogView} />
 					}
 					</div>
-				:   <PracticeLogContainer practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+				:   <PracticeLogContainer practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.hidePracticeLogView} showSongView={this.showSongView} />
 				}
 			</div>
 		);

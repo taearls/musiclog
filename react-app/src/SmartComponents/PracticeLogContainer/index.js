@@ -16,7 +16,7 @@ class PracticeLogContainer extends Component {
 			<div>
 				{ this.state.showEditPracticeLog ? 
 					<EditPracticeLogModal />
-				:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} />
+				:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} />
 				}
 			</div>
 		)

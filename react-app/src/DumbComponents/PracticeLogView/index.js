@@ -1,19 +1,19 @@
 import React from 'react';
 import '../../index.css';
 
-const PracticeLogView = ({practicelogs, userId, doLogOut}) => {
+const PracticeLogView = ({practicelogs, userId, doLogOut, hidePracticeLogView, showSongView}) => {
 	// filter out the practicelogs for the current user
 	const userPracticelogs = practicelogs.filter(practicelog => practicelog.user_id == userId);
 	const practicelogList = practicelogs.map((practicelog, i) => {
 		return (
-			<ul className="notlist" key={i}>
-				<li><b>Songs Worked On:</b> {practicelog.song_name}</li>
-				<li><b>Practice Goals:</b> {practicelog.goals}</li>
-				<li><b>Time Practiced:</b> {practicelog.time_practiced}</li>
-				<li><b>Date Practiced:</b> {practicelog.date_practiced}</li>
+			<div key={i}>
+				<p><b>Songs Worked On:</b> {practicelog.song_name}</p>
+				<p><b>Practice Goals:</b> {practicelog.goals}</p>
+				<p><b>Time Practiced:</b> {practicelog.time_practiced}</p>
+				<p><b>Date Practiced:</b> {practicelog.date_practiced}</p>
 				<button className="deletebutton">Delete</button>
 				<button className="editbutton">Edit</button>
-			</ul>
+			</div>
 
 		);
 	});
@@ -21,6 +21,9 @@ const PracticeLogView = ({practicelogs, userId, doLogOut}) => {
 		<div>
 			<h1> Practice Logs View </h1>
 			{practicelogList}
+			<button className="viewbutton" onClick={hidePracticeLogView}>Home</button>
+			<button className="viewbutton" onClick={showSongView}>Songs</button> <br/>
+
 			<button className="logout" onClick={doLogOut}>Log Out</button>
 		</div>
 	);

@@ -52,12 +52,11 @@ const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPra
 			<div>
 				{listUserAttributes()}
 			</div>
-			<button className="viewbutton" onClick={showSongView}>Songs</button> <br/>
-			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button> <br/>
-
-			<button className="editbutton">Edit</button> <br/>
-
+			<button className="editbutton">Edit</button>
 			<button className="deletebutton">Delete</button> <br/>
+
+			<button className="viewbutton" onClick={showSongView}>Songs</button> 
+			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button> <br/>
 
 			<button className="logout" onClick={doLogOut}>Log Out</button>
 		</div>
