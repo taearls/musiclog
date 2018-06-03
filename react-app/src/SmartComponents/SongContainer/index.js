@@ -14,6 +14,34 @@ class SongContainer extends Component {
 			showCreateSong: false
 		}
 	}
+	showCreateSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreateSong: true,
+			showEditSong: false
+		})
+	}
+	hideCreateSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreateSong: false,
+			showEditSong: false
+		})
+	}
+	showEditSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditSong: true,
+			showCreateSong: false
+		})
+	}
+	hideEditSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditSong: false,
+			showCreateSong: false
+		})
+	}
 	editSong = async (editedSong, e) => {
 	    const id = e.currentTarget.parentNode.id;
 	    const song = await fetch('http://localhost:9292/songs/' + id, {
@@ -47,11 +75,11 @@ class SongContainer extends Component {
 				{ !this.state.showCreateSong ?
 					<div>
 						{ this.state.showEditSong ?
-							<EditSongModal />
-						:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} editSong={this.editSong} />
+							<EditSongModal editSong={this.editSong} hideEditSongModal={this.hideEditSongModal} />
+						:	<SongView songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} showCreateSongModal={this.showCreateSongModal} showEditSongModal={this.showEditSongModal} />
 						}	
 					</div>
-				:   <CreateSongModal />
+				:   <CreateSongModal hideCreateSongModal={this.hideCreateSongModal} hideSongView={this.props.hideSongView} doLogOut={this.props.doLogOut} />
 				}
 			</div>
 		);
