@@ -59,7 +59,7 @@ const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPra
 
 			<button className="deletebutton">Delete</button> <br/>
 
-			<button className ="logout" onClick={doLogOut}>Log Out</button>
+			<button className="logout" onClick={doLogOut}>Log Out</button>
 		</div>
 	);
 }

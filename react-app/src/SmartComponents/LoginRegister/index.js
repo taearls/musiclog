@@ -56,7 +56,7 @@ class LoginRegister extends Component {
 					<br/>
       				<input type="password" name="password" placeholder="Password" onChange={this.handleInput}></input>
       				<br/>
-      				<button className="loginbutton" type="submit"> {this.state.registering ? "Register" : "Log In"}</button>
+      				<button className="viewbutton" type="submit"> {this.state.registering ? "Register" : "Log In"}</button>
      			</form>
 
 			</div>

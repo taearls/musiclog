@@ -12,6 +12,8 @@ const SongView = ({songs, userId, doLogOut}) => {
 				<li><b>Notes About Song: </b> {song.notes}</li>
 				<li><b>Link to Song File:</b> <a href={song.link_to_file} target="_blank">Link to Song</a></li>
 				<li><b>Link to Song Performance:</b> <a href={song.link_to_performance} target="_blank">Link to Performance</a></li>
+				<button className="deletebutton">Delete</button>
+				<button className="editbutton">Edit</button>
 			</ul>
 		);
 	});
@@ -19,6 +21,7 @@ const SongView = ({songs, userId, doLogOut}) => {
 		<div>
 			<h1> Songs View </h1>
 			{songList}
+			<button className="logout" onClick={doLogOut}>Log Out</button>
 		</div>
 	);
 }
