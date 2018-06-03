@@ -104,7 +104,6 @@ class App extends Component {
       this.setState({
         loggedIn: false,
         justLoggedOut: true,
-        justRegistered: false,
         logOutMessage: loggedOut.message
       });
     }

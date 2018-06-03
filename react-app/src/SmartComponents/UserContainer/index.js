@@ -18,6 +18,7 @@ class UserContainer extends Component {
 	    const id = this.state.userId;
 	    const user = await fetch('http://localhost:9292/users/' + id, {
 	    	method: 'PUT',
+	    	credentials: 'include',
 	    	body: JSON.stringify(editedUser)
 	    })
 	    const response = await user.json();
