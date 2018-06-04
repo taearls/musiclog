@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../index.css';
 
-const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPracticeLogView}) => {
+const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPracticeLogView, showEditUserModal}) => {
 	const currentUser = users.filter(user => user.id === userId);
 	const shownUser = currentUser[0];
 
@@ -52,8 +52,8 @@ const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPra
 			<div>
 				{listUserAttributes()}
 			</div>
-			<button className="editbutton">Edit</button>
-			<button className="deletebutton">Delete</button> <br/>
+			<button className="editbutton" onClick={showEditUserModal}>Edit</button>
+			<button className="deletebutton" onClick={deleteUser}>Delete</button> <br/>
 
 			<button className="viewbutton" onClick={showSongView}>Songs</button> 
 			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button> <br/>

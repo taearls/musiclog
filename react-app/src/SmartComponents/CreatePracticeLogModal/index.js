@@ -12,7 +12,7 @@ class CreatePracticeLogModal extends Component {
 	render() {
 		return(
 			<div>
-				<h1> Create Practice Log Modal </h1>
+				<h1> Add a New Practice Log! </h1>
 				<form>
 					Songs Worked On: <input className="input" type="text" name="song_name" placeholder="Songs Worked On"></input> <br/>
 					Practice Goals: <input className="input" type="text" name="goals" placeholder="Practice Goals"></input> <br/>

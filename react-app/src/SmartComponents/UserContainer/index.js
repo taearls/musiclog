@@ -42,6 +42,18 @@ class UserContainer extends Component {
 	      	users: this.state.users.filter((user) => Number(user.id) !== Number(id))
 	    });
 	}
+	showEditUserModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditUser: true
+		})
+	}
+	hideEditUserModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditUser: false
+		})
+	}
 	showSongView = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -78,8 +90,8 @@ class UserContainer extends Component {
 				    { !this.state.viewSongs ? 
 						<div>
 							{ this.state.showEditUser ?
-								<EditUserModal />
-							:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} />	
+								<EditUserModal hideEditUserModal={this.hideEditUserModal} doLogOut={this.props.doLogOut} />
+							:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} showEditUserModal={this.showEditUserModal} />	
 							}
 						</div>
 					: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.hideSongView} showPracticeLogView={this.showPracticeLogView} />
