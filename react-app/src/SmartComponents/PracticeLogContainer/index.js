@@ -77,6 +77,7 @@ class PracticeLogContainer extends Component {
     	});
 	}
 	editPracticeLog = async (editedPracticeLog, e) => {
+		e.preventDefault();
 	    const id = this.state.practicelogId;
 	    const practicelog = await fetch('http://localhost:9292/practicelogs/' + id, {
 	    	credentials: 'include',
@@ -90,7 +91,6 @@ class PracticeLogContainer extends Component {
 	    });
 	    this.state.practicelogs[editedPracticeLogIndex] = response.updated_practicelog;
 	    this.setState({
-	    	editedPracticeLog: `${response.updated_practicelog}`,
 	    	showEditPracticeLog: false
 	    })
 	}

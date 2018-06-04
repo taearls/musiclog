@@ -11,6 +11,7 @@ class SongContainer extends Component {
 		super();
 		this.state = {
 			songs: [],
+			songId: '',
 			showEditSong: false,
 			showCreateSong: false
 		}
@@ -42,9 +43,11 @@ class SongContainer extends Component {
 	}
 	showEditSongModal = (e) => {
 		e.preventDefault();
+		const id = e.currentTarget.parentNode.id;
 		this.setState({
 			showEditSong: true,
-			showCreateSong: false
+			showCreateSong: false,
+			songId: id
 		})
 	}
 	hideEditSongModal = (e) => {
@@ -75,7 +78,8 @@ class SongContainer extends Component {
 	    })
 	}
 	editSong = async (editedSong, e) => {
-	    const id = e.currentTarget.parentNode.id;
+		e.preventDefault();
+	    const id = this.state.songId;
 	    const song = await fetch('http://localhost:9292/songs/' + id, {
 	    	credentials: 'include',
 	    	method: 'PUT',
@@ -84,11 +88,10 @@ class SongContainer extends Component {
 	    const response = await song.json();
 
 	    const editedSongIndex = this.state.songs.findIndex((song) => {
-	    	return Number(song.id) === Number(response.updated_song.id);
+	    	return parseInt(song.id) === parseInt(response.updated_song.id);
 	    });
 	    this.state.songs[editedSongIndex] = response.updated_song;
 	    this.setState({
-	    	editedSong: `${response.updated_song}`,
 	    	showEditSong: false
 	    })
 	}
@@ -108,7 +111,7 @@ class SongContainer extends Component {
 				{ !this.state.showCreateSong ?
 					<div>
 						{ this.state.showEditSong ?
-							<EditSongModal editSong={this.editSong} hideEditSongModal={this.hideEditSongModal} doLogOut={this.props.doLogOut} />
+							<EditSongModal songs={this.state.songs} editSong={this.editSong} hideEditSongModal={this.hideEditSongModal} doLogOut={this.props.doLogOut} songId={this.state.songId} userId={this.props.userId} />
 						:	<SongView songs={this.state.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} showCreateSongModal={this.showCreateSongModal} showEditSongModal={this.showEditSongModal} />
 						}	
 					</div>
