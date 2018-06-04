@@ -10,6 +10,7 @@ class PracticeLogContainer extends Component {
 		super();
 		this.state = {
 			practicelogs: [],
+			practicelogId: '',
 			showEditPracticeLog: false,
 			showCreatePracticeLog: false
 		}
@@ -41,16 +42,18 @@ class PracticeLogContainer extends Component {
 	}
 	showEditPracticeLogModal = (e) => {
 		e.preventDefault();
+		const id = e.currentTarget.parentNode.id;
 		this.setState({
 			showEditPracticeLog: true,
-			showCreatePracticeLog: false
+			showCreatePracticeLog: false,
+			practicelogId: id
 		})
 	}
 	hideEditPracticeLogModal = (e) => {
 		e.preventDefault();
 		this.setState({
 			showEditPracticeLog: false,
-			showCreatePracticeLog: false
+			showCreatePracticeLog: false		
 		})
 	}
 	getPracticelogs = async () => {
@@ -74,7 +77,7 @@ class PracticeLogContainer extends Component {
     	});
 	}
 	editPracticeLog = async (editedPracticeLog, e) => {
-	    const id = e.currentTarget.parentNode.id;
+	    const id = this.state.practicelogId;
 	    const practicelog = await fetch('http://localhost:9292/practicelogs/' + id, {
 	    	credentials: 'include',
 	    	method: 'PUT',
@@ -87,7 +90,8 @@ class PracticeLogContainer extends Component {
 	    });
 	    this.state.practicelogs[editedPracticeLogIndex] = response.updated_practicelog;
 	    this.setState({
-	    	editedPracticeLog: `${response.updated_practicelog}`
+	    	editedPracticeLog: `${response.updated_practicelog}`,
+	    	showEditPracticeLog: false
 	    })
 	}
 	deletePracticeLog = async (e) => {
@@ -106,7 +110,7 @@ class PracticeLogContainer extends Component {
 				{ !this.state.showCreatePracticeLog ?
 					<div>
 						{ this.state.showEditPracticeLog ? 
-							<EditPracticeLogModal editPracticeLog={this.editPracticeLog} hideEditPracticeLogModal={this.hideEditPracticeLogModal} doLogOut={this.props.doLogOut} />
+							<EditPracticeLogModal practicelogs={this.state.practicelogs} editPracticeLog={this.editPracticeLog} hideEditPracticeLogModal={this.hideEditPracticeLogModal} doLogOut={this.props.doLogOut} userId={this.props.userId} practicelogId={this.state.practicelogId} />
 						:   <PracticeLogView practicelogs={this.state.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} deletePracticeLog={this.deletePracticeLog} showCreatePracticeLogModal={this.showCreatePracticeLogModal} showEditPracticeLogModal={this.showEditPracticeLogModal} />
 						}
 					</div>
