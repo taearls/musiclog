@@ -9,8 +9,6 @@ class App extends Component {
     this.state = {
       users: [],
       userId: '',
-      songs: [],
-      practicelogs: [],
       loggedIn: false,
       justLoggedOut: false,
       message: '',
@@ -49,27 +47,9 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       })
-      this.getSongs()
-      .then((response) => {
-        this.setState({
-          songs: response.songs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      this.getPracticelogs()
-      .then((response) => {
-        this.setState({
-          practicelogs: response.practicelogs
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   } 
 
-  // DEFINE GET REQUESTS
+  // DEFINE GET USER REQUEST
 
   getUsers = async () => {
     const usersJson = await fetch('http://localhost:9292/users', {
@@ -77,20 +57,6 @@ class App extends Component {
     });
     const users = await usersJson.json();
     return users;
-  }
-  getSongs = async () => {
-    const songsJson = await fetch('http://localhost:9292/songs', {
-      credentials: 'include'
-    });
-    const songs = await songsJson.json();
-    return songs;
-  }
-  getPracticelogs = async () => {
-    const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
-      credentials: 'include'
-    });
-    const practicelogs = await practicelogsJson.json();
-    return practicelogs;
   }
 
   // LOG OUT
@@ -168,7 +134,7 @@ class App extends Component {
       <div className="App">
         {this.state.loggedIn ?
             <div>
-              <UserContainer doLogOut={this.doLogOut} users={this.state.users} songs={this.state.songs} practicelogs={this.state.practicelogs} userId={this.state.userId} message={this.state.message} />
+              <UserContainer doLogOut={this.doLogOut} users={this.state.users} userId={this.state.userId} message={this.state.message} />
             </div>
           : <LoginRegister doLogIn={this.doLogIn} doRegister={this.doRegister} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage}  justLoggedOut={this.state.justLoggedOut} />
         }

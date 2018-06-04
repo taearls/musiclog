@@ -14,10 +14,16 @@ class PracticeLogContainer extends Component {
 			showCreatePracticeLog: false
 		}
 	}
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			practicelogs: nextProps.practicelogs
-		})
+	componentDidMount() {
+		this.getPracticelogs()
+      	.then((response) => {
+	        this.setState({
+	        	practicelogs: response.practicelogs
+	        })
+      	})
+      	.catch((err) => {
+        	console.log(err);
+      	})
 	}
 	showCreatePracticeLogModal = (e) => {
 		e.preventDefault();
@@ -47,6 +53,26 @@ class PracticeLogContainer extends Component {
 			showCreatePracticeLog: false
 		})
 	}
+	getPracticelogs = async () => {
+	    const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
+	      credentials: 'include'
+	    });
+	    const practicelogs = await practicelogsJson.json();
+	    return practicelogs;
+  	}
+	createPracticeLog = async (newPracticeLog, e) => {
+		e.preventDefault();
+		const practicelog = await fetch('http://localhost:9292/practicelogs', {
+	    	credentials: 'include',
+	    	method: 'POST',
+	    	body: JSON.stringify(newPracticeLog)
+	    });
+	    const practiceLogsParsed = await practicelog.json();
+    	this.setState({
+    		practicelogs: [...this.state.practicelogs, practiceLogsParsed.new_practicelog],
+    		showCreatePracticeLog: false
+    	});
+	}
 	editPracticeLog = async (editedPracticeLog, e) => {
 	    const id = e.currentTarget.parentNode.id;
 	    const practicelog = await fetch('http://localhost:9292/practicelogs/' + id, {
@@ -56,10 +82,10 @@ class PracticeLogContainer extends Component {
 	    })
 	    const response = await practicelog.json();
 
-	    const editedPracticeLogIndex = this.props.practicelogs.findIndex((practicelog) => {
-	    	return Number(practicelog.id) === Number(response.updated_practicelog.id);
+	    const editedPracticeLogIndex = this.state.practicelogs.findIndex((practicelog) => {
+	    	return parseInt(practicelog.id) === parseInt(response.updated_practicelog.id);
 	    });
-	    this.props.practicelogs[editedPracticeLogIndex] = response.updated_practicelog;
+	    this.state.practicelogs[editedPracticeLogIndex] = response.updated_practicelog;
 	    this.setState({
 	    	editedPracticeLog: `${response.updated_practicelog}`
 	    })
@@ -71,7 +97,7 @@ class PracticeLogContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	practicelogs: this.props.practicelogs.filter((practicelog) => Number(practicelog.id) !== Number(id))
+	      	practicelogs: this.state.practicelogs.filter((practicelog) => parseInt(practicelog.id) !== parseInt(id))
 	    });
 	}
 	render() {
@@ -81,10 +107,10 @@ class PracticeLogContainer extends Component {
 					<div>
 						{ this.state.showEditPracticeLog ? 
 							<EditPracticeLogModal editPracticeLog={this.editPracticeLog} hideEditPracticeLogModal={this.hideEditPracticeLogModal} doLogOut={this.props.doLogOut} />
-						:   <PracticeLogView practicelogs={this.props.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} deletePracticeLog={this.deletePracticeLog} showCreatePracticeLogModal={this.showCreatePracticeLogModal} showEditPracticeLogModal={this.showEditPracticeLogModal} />
+						:   <PracticeLogView practicelogs={this.state.practicelogs} userId={this.props.userId} doLogOut={this.props.doLogOut} hidePracticeLogView={this.props.hidePracticeLogView} showSongView={this.props.showSongView} deletePracticeLog={this.deletePracticeLog} showCreatePracticeLogModal={this.showCreatePracticeLogModal} showEditPracticeLogModal={this.showEditPracticeLogModal} />
 						}
 					</div>
-				:   <CreatePracticeLogModal hideCreatePracticeLogModal={this.hideCreatePracticeLogModal} hidePracticeLogView={this.props.hidePracticeLogView} doLogOut={this.props.doLogOut} />
+				:   <CreatePracticeLogModal createPracticeLog={this.createPracticeLog} hideCreatePracticeLogModal={this.hideCreatePracticeLogModal} hidePracticeLogView={this.props.hidePracticeLogView} doLogOut={this.props.doLogOut} userId={this.props.userId} />
 				}
 			</div>
 		)
