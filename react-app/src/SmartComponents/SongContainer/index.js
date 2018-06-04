@@ -70,7 +70,8 @@ class SongContainer extends Component {
 	    })
 	    const songsParsed = await songsJson.json();
 	    this.setState({
-	      songs: [...this.state.songs, songsParsed.new_song]
+	      songs: [...this.state.songs, songsParsed.new_song],
+	      showCreateSong: false
 	    })
 	}
 	editSong = async (editedSong, e) => {
@@ -87,7 +88,8 @@ class SongContainer extends Component {
 	    });
 	    this.state.songs[editedSongIndex] = response.updated_song;
 	    this.setState({
-	    	editedSong: `${response.updated_song}`
+	    	editedSong: `${response.updated_song}`,
+	    	showEditSong: false
 	    })
 	}
 	deleteSong = async (e) => {
@@ -97,7 +99,7 @@ class SongContainer extends Component {
 	      	method: 'DELETE'
 	    });
 	    this.setState({
-	      	songs: this.state.songs.filter((song) => Number(song.id) !== Number(id))
+	      	songs: this.state.songs.filter((song) => parseInt(song.id) !== parseInt(id))
 	    });
 	}
 	render() {
@@ -110,7 +112,7 @@ class SongContainer extends Component {
 						:	<SongView songs={this.state.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.props.hideSongView} showPracticeLogView={this.props.showPracticeLogView} deleteSong={this.deleteSong} showCreateSongModal={this.showCreateSongModal} showEditSongModal={this.showEditSongModal} />
 						}	
 					</div>
-				:   <CreateSongModal createSong={this.createSong} hideCreateSongModal={this.hideCreateSongModal} hideSongView={this.props.hideSongView} doLogOut={this.props.doLogOut} />
+				:   <CreateSongModal createSong={this.createSong} hideCreateSongModal={this.hideCreateSongModal} hideSongView={this.props.hideSongView} doLogOut={this.props.doLogOut} userId={this.props.userId} />
 				}
 			</div>
 		);

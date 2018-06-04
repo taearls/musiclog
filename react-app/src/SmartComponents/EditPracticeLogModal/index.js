@@ -42,7 +42,6 @@ class EditPracticeLogModal extends Component {
     }
 
     render(){
-        console.log(this.state, " this is this.state");
         return (
             <div>
                 <h1> Update Your Practice Log </h1>

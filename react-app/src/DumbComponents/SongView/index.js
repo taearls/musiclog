@@ -3,7 +3,7 @@ import '../../index.css';
 
 const SongView = ({songs, userId, doLogOut, hideSongView, showPracticeLogView, deleteSong, showCreateSongModal, showEditSongModal}) => {
 	// filter out the songs for the current user
-	const userSongs = songs.filter(song => Number(song.user_id) === Number(userId));
+	const userSongs = songs.filter(song => parseInt(song.user_id) === parseInt(userId));
 	const songList = userSongs.map((song, i) => {
 		return (
 			<div key={i} id={song.id}>
@@ -26,7 +26,7 @@ const SongView = ({songs, userId, doLogOut, hideSongView, showPracticeLogView, d
 			<button className="logout" onClick={doLogOut}>Log Out</button> <br/>
 
 			<button className="createbutton" onClick={showCreateSongModal}>Add Song</button>
-			
+
 			{songList}
 			
 		</div>
