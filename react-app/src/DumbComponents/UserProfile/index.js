@@ -48,17 +48,19 @@ const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPra
 		// change header + button text depending on 
 		// whether the user's name is defined or not
 		<div>
+
 			<h1>User Profile</h1>
+
+			<button className="viewbutton" onClick={showSongView}>Songs</button> 
+			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button>
+			<button className="logout" onClick={doLogOut}>Log Out</button>
+
 			<div>
 				{listUserAttributes()}
 			</div>
 			<button className="editbutton" onClick={showEditUserModal}>Edit</button>
-			<button className="deletebutton" onClick={deleteUser}>Delete</button> <br/>
+			<button className="deletebutton" onClick={deleteUser}>Delete</button>
 
-			<button className="viewbutton" onClick={showSongView}>Songs</button> 
-			<button className="viewbutton" onClick={showPracticeLogView}>Logs</button> <br/>
-
-			<button className="logout" onClick={doLogOut}>Log Out</button>
 		</div>
 	);
 }

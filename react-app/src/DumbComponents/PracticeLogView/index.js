@@ -20,13 +20,16 @@ const PracticeLogView = ({practicelogs, userId, doLogOut, hidePracticeLogView, s
 	return (
 		<div>
 			<h1> Your Practice Logs </h1>
-			{practicelogList}
-			<button className="createbutton" onClick={showCreatePracticeLogModal}>Add Log</button> <br/>
 
 			<button className="viewbutton" onClick={hidePracticeLogView}>Home</button>
-			<button className="viewbutton" onClick={showSongView}>Songs</button> <br/>
+			<button className="viewbutton" onClick={showSongView}>Songs</button>
 
-			<button className="logout" onClick={doLogOut}>Log Out</button>
+			<button className="logout" onClick={doLogOut}>Log Out</button> <br/>
+
+			<button className="createbutton" onClick={showCreatePracticeLogModal}>Add Log</button>
+
+			{practicelogList}
+			
 		</div>
 	);
 }
