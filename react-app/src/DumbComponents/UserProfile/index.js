@@ -2,6 +2,7 @@ import React from 'react';
 import '../../index.css';
 
 const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPracticeLogView, showEditUserModal}) => {
+	// only show the current user
 	const currentUser = users.filter(user => parseInt(user.id) === parseInt(userId));
 	const shownUser = currentUser[0];
 

@@ -57,7 +57,6 @@ class App extends Component {
       credentials: 'include' // you MUST include in ALL ajax requests
     })
     const loggedOut = await logoutJson.json();
-    console.log(deleteMessage, " this is the parameter passed into delete Log OUt");
     if (loggedOut.success) {
       this.setState({
         loggedIn: false,
