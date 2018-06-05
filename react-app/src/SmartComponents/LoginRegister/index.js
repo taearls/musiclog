@@ -38,7 +38,7 @@ class LoginRegister extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Welcome to SongTrack!</h1>
+				<h1>Welcome to MusicLog!</h1>
 
   				{ this.props.justLoggedOut ? <h3> {this.props.logOutMessage} </h3> : <h3 className="hidden">User has Logged Out.</h3> } 
 
