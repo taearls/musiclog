@@ -1,6 +1,6 @@
-# SongTrack
+# MusicLog
 
-My final project, SongTrack, for my Web Development Immersive at General Assembly. An application that helps music students organize their music and keep everything stored in one convenient location.
+My final project, MusicLog, for my Web Development Immersive at General Assembly. An application that helps music students organize their music and keep everything stored in one convenient location.
 
 ## USER STORY
 
