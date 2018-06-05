@@ -30,7 +30,7 @@ class PracticeLogContainer extends Component {
 	// PRACTICE LOG CRUD METHODS
 
 	getPracticelogs = async () => {
-	    const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
+	    const practicelogsJson = await fetch('https://musiclog-api.herokuapp.com/practicelogs', {
 	      credentials: 'include'
 	    });
 	    const practicelogs = await practicelogsJson.json();
@@ -38,7 +38,7 @@ class PracticeLogContainer extends Component {
   	}
 	createPracticeLog = async (newPracticeLog, e) => {
 		e.preventDefault();
-		const practicelog = await fetch('http://localhost:9292/practicelogs', {
+		const practicelog = await fetch('https://musiclog-api.herokuapp.com/practicelogs', {
 	    	credentials: 'include',
 	    	method: 'POST',
 	    	body: JSON.stringify(newPracticeLog)
@@ -52,7 +52,7 @@ class PracticeLogContainer extends Component {
 	editPracticeLog = async (editedPracticeLog, e) => {
 		e.preventDefault();
 	    const id = this.state.practicelogId;
-	    const practicelog = await fetch('http://localhost:9292/practicelogs/' + id, {
+	    const practicelog = await fetch('https://musiclog-api.herokuapp.com/practicelogs/' + id, {
 	    	credentials: 'include',
 	    	method: 'PUT',
 	    	body: JSON.stringify(editedPracticeLog)
@@ -69,7 +69,7 @@ class PracticeLogContainer extends Component {
 	}
 	deletePracticeLog = async (e) => {
 	    const id = e.currentTarget.parentNode.id;
-	    const practicelogs = await fetch ('http://localhost:9292/practicelogs/' + id, {
+	    const practicelogs = await fetch ('https://musiclog-api.herokuapp.com/practicelogs/' + id, {
 	      	credentials: 'include',
 	      	method: 'DELETE'
 	    });

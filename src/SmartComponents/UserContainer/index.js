@@ -30,7 +30,7 @@ class UserContainer extends Component {
 	// USER CRUD FUNCTIONS
 
 	getUsers = async () => {
-    	const usersJson = await fetch('http://localhost:9292/users', {
+    	const usersJson = await fetch('https://musiclog-api.herokuapp.com/users', {
       		credentials: 'include'
     	});
     	const users = await usersJson.json();
@@ -39,7 +39,7 @@ class UserContainer extends Component {
 	editUser = async (editedUser, e) => {
 		e.preventDefault();
 	    const id = this.props.userId;
-	    const user = await fetch('http://localhost:9292/users/' + id, {
+	    const user = await fetch('https://musiclog-api.herokuapp.com/users/' + id, {
 	    	method: 'PUT',
 	    	credentials: 'include',
 	    	body: JSON.stringify(editedUser)
@@ -56,7 +56,7 @@ class UserContainer extends Component {
 	}
 	deleteUser = async (e) => {
 	    const id = this.props.userId;
-	    const user = await fetch ('http://localhost:9292/users/' + id, {
+	    const user = await fetch ('https://musiclog-api.herokuapp.com/users/' + id, {
 	      	credentials: 'include',
 	      	method: 'DELETE'
 	    });

@@ -29,7 +29,7 @@ class SongContainer extends Component {
 	}
 	// SONG CRUD METHODS
 	getSongs = async () => {
-    	const songsJson = await fetch('http://localhost:9292/songs', {
+    	const songsJson = await fetch('https://musiclog-api.herokuapp.com/songs', {
       		credentials: 'include'
     	});
     	const songs = await songsJson.json();
@@ -37,7 +37,7 @@ class SongContainer extends Component {
 	}
 	createSong = async (song, e) => {
 	    e.preventDefault();
-	    const songsJson = await fetch ('http://localhost:9292/songs', {
+	    const songsJson = await fetch ('https://musiclog-api.herokuapp.com/songs', {
 	      credentials: 'include',
 	      method: 'POST',
 	      body: JSON.stringify(song)
@@ -51,7 +51,7 @@ class SongContainer extends Component {
 	editSong = async (editedSong, e) => {
 		e.preventDefault();
 	    const id = this.state.songId;
-	    const song = await fetch('http://localhost:9292/songs/' + id, {
+	    const song = await fetch('https://musiclog-api.herokuapp.com/songs/' + id, {
 	    	credentials: 'include',
 	    	method: 'PUT',
 	    	body: JSON.stringify(editedSong)
@@ -68,7 +68,7 @@ class SongContainer extends Component {
 	}
 	deleteSong = async (e) => {
 	    const id = e.currentTarget.parentNode.id;
-	    const songs = await fetch ('http://localhost:9292/songs/' + id, {
+	    const songs = await fetch ('https://musiclog-api.herokuapp.com/songs/' + id, {
 	      	credentials: 'include',
 	      	method: 'DELETE'
 	    });

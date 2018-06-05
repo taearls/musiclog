@@ -37,7 +37,7 @@ class App extends Component {
   // LOG OUT
 
   doLogOut = async () => {
-    const logoutJson = await fetch('http://localhost:9292/users/logout', {
+    const logoutJson = await fetch('https://musiclog-api.herokuapp.com/users/logout', {
       credentials: 'include' // you MUST include in ALL ajax requests
     })
     const loggedOut = await logoutJson.json();
@@ -53,7 +53,7 @@ class App extends Component {
 
   // log out function if current user has just been deleted
   deleteLogOut = async (deleteMessage) => {
-    const logoutJson = await fetch('http://localhost:9292/users/logout', {
+    const logoutJson = await fetch('https://musiclog-api.herokuapp.com/users/logout', {
       credentials: 'include' // you MUST include in ALL ajax requests
     })
     const loggedOut = await logoutJson.json();
@@ -70,7 +70,7 @@ class App extends Component {
   // LOG IN
 
   doLogIn = async (email, password) => {
-    const loginJson = await fetch('http://localhost:9292/users/login', {
+    const loginJson = await fetch('https://musiclog-api.herokuapp.com/users/login', {
       method: 'POST',
       credentials: 'include', // you MUST include in ALL ajax requests
       body: JSON.stringify({
@@ -97,7 +97,7 @@ class App extends Component {
   // REGISTER
 
   doRegister = async (email, password) => {
-    const registerJson = await fetch('http://localhost:9292/users/register', {
+    const registerJson = await fetch('https://musiclog-api.herokuapp.com/users/register', {
       method: 'POST',
       credentials: 'include', // you MUST include in ALL ajax requests
       body: JSON.stringify({
