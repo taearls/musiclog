@@ -26,36 +26,9 @@ class PracticeLogContainer extends Component {
         	console.log(err);
       	})
 	}
-	showCreatePracticeLogModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showCreatePracticeLog: true,
-			showEditPracticeLog: false
-		})
-	}
-	hideCreatePracticeLogModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showCreatePracticeLog: false,
-			showEditPracticeLog: false
-		})
-	}
-	showEditPracticeLogModal = (e) => {
-		e.preventDefault();
-		const id = e.currentTarget.parentNode.id;
-		this.setState({
-			showEditPracticeLog: true,
-			showCreatePracticeLog: false,
-			practicelogId: id
-		})
-	}
-	hideEditPracticeLogModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showEditPracticeLog: false,
-			showCreatePracticeLog: false		
-		})
-	}
+
+	// PRACTICE LOG CRUD METHODS
+
 	getPracticelogs = async () => {
 	    const practicelogsJson = await fetch('http://localhost:9292/practicelogs', {
 	      credentials: 'include'
@@ -103,6 +76,39 @@ class PracticeLogContainer extends Component {
 	    this.setState({
 	      	practicelogs: this.state.practicelogs.filter((practicelog) => parseInt(practicelog.id) !== parseInt(id))
 	    });
+	}
+
+	// SHOW / HIDE METHODS 
+
+	showCreatePracticeLogModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreatePracticeLog: true,
+			showEditPracticeLog: false
+		})
+	}
+	hideCreatePracticeLogModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreatePracticeLog: false,
+			showEditPracticeLog: false
+		})
+	}
+	showEditPracticeLogModal = (e) => {
+		e.preventDefault();
+		const id = e.currentTarget.parentNode.id;
+		this.setState({
+			showEditPracticeLog: true,
+			showCreatePracticeLog: false,
+			practicelogId: id
+		})
+	}
+	hideEditPracticeLogModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditPracticeLog: false,
+			showCreatePracticeLog: false		
+		})
 	}
 	render() {
 		return (

@@ -7,7 +7,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      users: [],
       userId: '',
       loggedIn: false,
       justLoggedOut: false,
@@ -35,30 +34,6 @@ class App extends Component {
     });
   }
 
-  // CALL GET REQUESTS
-
-  componentDidMount() {
-    this.getUsers()
-      .then((response) => {
-        this.setState({
-          users: response.users
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  } 
-
-  // DEFINE GET USER REQUEST
-
-  getUsers = async () => {
-    const usersJson = await fetch('http://localhost:9292/users', {
-      credentials: 'include'
-    });
-    const users = await usersJson.json();
-    return users;
-  }
-
   // LOG OUT
 
   doLogOut = async () => {
@@ -71,6 +46,23 @@ class App extends Component {
         loggedIn: false,
         justLoggedOut: true,
         logOutMessage: loggedOut.message
+      });
+    }
+    return loggedOut;
+  }
+
+  // log out function if current user has just been deleted
+  deleteLogOut = async (deleteMessage) => {
+    const logoutJson = await fetch('http://localhost:9292/users/logout', {
+      credentials: 'include' // you MUST include in ALL ajax requests
+    })
+    const loggedOut = await logoutJson.json();
+    console.log(deleteMessage, " this is the parameter passed into delete Log OUt");
+    if (loggedOut.success) {
+      this.setState({
+        loggedIn: false,
+        justLoggedOut: true,
+        logOutMessage: deleteMessage
       });
     }
     return loggedOut;
@@ -116,11 +108,11 @@ class App extends Component {
     })
     const parsedRegisterResponse = await registerJson.json();
     if (parsedRegisterResponse.success) {
-      console.log(parsedRegisterResponse, "parsedRegisterResponse");
       this.setState({
         loggedIn: true,
         justLoggedOut: false,
         logInErrorMessage: '',
+        userId: parsedRegisterResponse.user_id
       })
     } else {
       this.setState({
@@ -128,13 +120,12 @@ class App extends Component {
       });
     }
   }
-
   render() {
     return (
       <div className="App">
         {this.state.loggedIn ?
             <div>
-              <UserContainer doLogOut={this.doLogOut} users={this.state.users} userId={this.state.userId} message={this.state.message} />
+              <UserContainer doLogOut={this.doLogOut} userId={this.state.userId} message={this.state.message} deleteLogOut={this.deleteLogOut} />
             </div>
           : <LoginRegister doLogIn={this.doLogIn} doRegister={this.doRegister} makeBlankMessage={this.makeBlankMessage} makeBlankLogOutMessage={this.clearLogOutMessage} logInErrorMessage={this.state.logInErrorMessage} logOutMessage={this.state.logOutMessage}  justLoggedOut={this.state.justLoggedOut} />
         }

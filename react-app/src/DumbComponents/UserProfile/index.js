@@ -2,7 +2,7 @@ import React from 'react';
 import '../../index.css';
 
 const UserProfile = ({users, userId, doLogOut, deleteUser, showSongView, showPracticeLogView, showEditUserModal}) => {
-	const currentUser = users.filter(user => user.id === userId);
+	const currentUser = users.filter(user => parseInt(user.id) === parseInt(userId));
 	const shownUser = currentUser[0];
 
 	const listUserAttributes = () => {

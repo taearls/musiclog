@@ -27,36 +27,7 @@ class SongContainer extends Component {
         	console.log(err);
       	})
 	}
-	showCreateSongModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showCreateSong: true,
-			showEditSong: false
-		})
-	}
-	hideCreateSongModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showCreateSong: false,
-			showEditSong: false
-		})
-	}
-	showEditSongModal = (e) => {
-		e.preventDefault();
-		const id = e.currentTarget.parentNode.id;
-		this.setState({
-			showEditSong: true,
-			showCreateSong: false,
-			songId: id
-		})
-	}
-	hideEditSongModal = (e) => {
-		e.preventDefault();
-		this.setState({
-			showEditSong: false,
-			showCreateSong: false
-		})
-	}
+	// SONG CRUD METHODS
 	getSongs = async () => {
     	const songsJson = await fetch('http://localhost:9292/songs', {
       		credentials: 'include'
@@ -104,6 +75,38 @@ class SongContainer extends Component {
 	    this.setState({
 	      	songs: this.state.songs.filter((song) => parseInt(song.id) !== parseInt(id))
 	    });
+	}
+
+	// SHOW / HIDE METHODS
+	showCreateSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreateSong: true,
+			showEditSong: false
+		})
+	}
+	hideCreateSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showCreateSong: false,
+			showEditSong: false
+		})
+	}
+	showEditSongModal = (e) => {
+		e.preventDefault();
+		const id = e.currentTarget.parentNode.id;
+		this.setState({
+			showEditSong: true,
+			showCreateSong: false,
+			songId: id
+		})
+	}
+	hideEditSongModal = (e) => {
+		e.preventDefault();
+		this.setState({
+			showEditSong: false,
+			showCreateSong: false
+		})
 	}
 	render() {
 		return(

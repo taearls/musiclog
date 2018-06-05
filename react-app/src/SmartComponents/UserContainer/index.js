@@ -9,13 +9,36 @@ class UserContainer extends Component {
 	constructor() {
 		super();
 		this.state = {
+			users: [],
 			showEditUser: false,
 			viewSongs: false,
 			viewPracticeLogs: false
 		}
 	}
-	editUser = async (editedUser) => {
-	    const id = this.state.userId;
+	componentDidMount() {
+		this.getUsers()
+      	.then((response) => {
+        	this.setState({
+          		users: response.users
+        	})
+      	})
+      	.catch((err) => {
+        	console.log(err);
+      	})
+	}
+
+	// USER CRUD FUNCTIONS
+
+	getUsers = async () => {
+    	const usersJson = await fetch('http://localhost:9292/users', {
+      		credentials: 'include'
+    	});
+    	const users = await usersJson.json();
+    	return users;
+  	}
+	editUser = async (editedUser, e) => {
+		e.preventDefault();
+	    const id = this.props.userId;
 	    const user = await fetch('http://localhost:9292/users/' + id, {
 	    	method: 'PUT',
 	    	credentials: 'include',
@@ -24,24 +47,26 @@ class UserContainer extends Component {
 	    const response = await user.json();
 
 	    const editedUserIndex = this.state.users.findIndex((user) => {
-	    	return Number(user.id) === Number(response.updated_users.id);
+	    	return parseInt(user.id) === parseInt(response.updated_user.id);
 	    });
-	    this.state.employees[editedUserIndex] = response.updated_user;
+	    this.state.users[editedUserIndex] = response.updated_user;
 	    this.setState({
-	    	editedUser: `${response.updated_user}`
+	    	showEditUser: false
 	    })
 	}
 	deleteUser = async (e) => {
-	    const id = e.currentTarget.parentNode.parentNode.id;
-	    console.log(id, " this is the id of the employee we're trying to delete");
-	    const users = await fetch ('http://localhost:9292/users/' + id, {
+	    const id = this.props.userId;
+	    const user = await fetch ('http://localhost:9292/users/' + id, {
 	      	credentials: 'include',
 	      	method: 'DELETE'
 	    });
-	    this.setState({
-	      	users: this.state.users.filter((user) => Number(user.id) !== Number(id))
-	    });
+	    const response = await user.json();
+	    this.state.users.filter((user) => parseInt(user.id) !== parseInt(id));
+	    this.props.deleteLogOut(response.message);
 	}
+
+	// SHOW / HIDE FUNCTIONS
+
 	showEditUserModal = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -90,8 +115,8 @@ class UserContainer extends Component {
 				    { !this.state.viewSongs ? 
 						<div>
 							{ this.state.showEditUser ?
-								<EditUserModal hideEditUserModal={this.hideEditUserModal} doLogOut={this.props.doLogOut} />
-							:	<UserProfile users={this.props.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} showEditUserModal={this.showEditUserModal} />	
+								<EditUserModal users={this.state.users} userId={this.props.userId} hideEditUserModal={this.hideEditUserModal} doLogOut={this.props.doLogOut} editUser={this.editUser} />
+							:	<UserProfile users={this.state.users} userId={this.props.userId} doLogOut={this.props.doLogOut} deleteUser={this.deleteUser} showSongView={this.showSongView} showPracticeLogView={this.showPracticeLogView} showEditUserModal={this.showEditUserModal} />	
 							}
 						</div>
 					: <SongContainer songs={this.props.songs} userId={this.props.userId} doLogOut={this.props.doLogOut} hideSongView={this.hideSongView} showPracticeLogView={this.showPracticeLogView} />
