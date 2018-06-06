@@ -20,14 +20,14 @@ My final project, MusicLog, for my Web Development Immersive at General Assembly
 ### LOGIN/REGISTER
 ![Login/Register Screenshot](screenshots/loginregister_screenshot.png)
 
-<!-- ### LANDING PAGE
+### LANDING PAGE
 ![Landing Page Screenshot](screenshots/landingpage_screenshot.png)
+
+### SONGS VIEW
+![Songs View Screenshot](screenshots/songs_screenshot.png)
 
 ### PRACTICE LOGS VIEW
 ![Practice Logs View Screenshot](screenshots/practicelogs_screenshot.png)
-
-### SONGS VIEW
-![Songs View Screenshot](screenshots/songs_screenshot.png) -->
 
 
 ## WIREFRAMES
@@ -38,8 +38,8 @@ My final project, MusicLog, for my Web Development Immersive at General Assembly
 ### LANDING PAGE
 ![Landing Page Wireframe](wireframes/landing_page.png)
 
-### PRACTICE LOGS VIEw
-![Practice Logs View Wireframe](wireframes/practice_logs.png)
-
 ### SONGS VIEW
 ![Songs View Wireframe](wireframes/songs_view.png)
+
+### PRACTICE LOGS VIEw
+![Practice Logs View Wireframe](wireframes/practice_logs.png)
