@@ -14,16 +14,32 @@ My final project, MusicLog, for my Web Development Immersive at General Assembly
 
 - Students will be able to edit their contact information if it changes.
 
+
+## SCREENSHOTS
+
+### LOGIN/REGISTER
+![Login/Register Screenshot](screenshots/loginregister_screenshot.png)
+
+<!-- ### LANDING PAGE
+![Landing Page Screenshot](screenshots/landingpage_screenshot.png)
+
+### PRACTICE LOGS VIEW
+![Practice Logs View Screenshot](screenshots/practicelogs_screenshot.png)
+
+### SONGS VIEW
+![Songs View Screenshot](screenshots/songs_screenshot.png) -->
+
+
 ## WIREFRAMES
 
 ### LOGIN/REGISTER 
-![Login/Register Page](wireframes/login_register.png)
+![Login/Register Wireframe](wireframes/login_register.png)
 
 ### LANDING PAGE
-![Landing Page](wireframes/landing_page.png)
+![Landing Page Wireframe](wireframes/landing_page.png)
 
-### PRACTICE LOGS
-![Practice Logs](wireframes/practice_logs.png)
+### PRACTICE LOGS VIEw
+![Practice Logs View Wireframe](wireframes/practice_logs.png)
 
 ### SONGS VIEW
-![Songs View](wireframes/songs_view.png)
+![Songs View Wireframe](wireframes/songs_view.png)
