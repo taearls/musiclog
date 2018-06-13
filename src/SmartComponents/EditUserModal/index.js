@@ -48,7 +48,7 @@ class EditUserModal extends Component {
             student_phone: `${userToEdit.student_phone}`,
             text_student: `${userToEdit.text_student}`,
             parent_phone: `${userToEdit.parent_phone}`,
-            text_parent: `${userToEdit.email}`,
+            text_parent: `${userToEdit.text_parent}`,
             lesson_location: `${userToEdit.lesson_location}`,
             lesson_day: `${userToEdit.lesson_day}`,
             lesson_time: `${userToEdit.lesson_time}`,
